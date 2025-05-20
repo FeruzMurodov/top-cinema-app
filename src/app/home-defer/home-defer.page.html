@@ -5,21 +5,8 @@
 </ion-header>
 
 <ion-content>
-  @if (isLoading) {
-  <ion-list>
-    @for (i of dummyArray; track i) {
-    <ion-item lines="none" class="ion-padding-bottom">
-      <ion-avatar slot="start">
-        <ion-skeleton-text></ion-skeleton-text>
-      </ion-avatar>
-      <ion-skeleton-text animated style="height: 40px" />
-    </ion-item>
-    }
-  </ion-list>
-  } @else if (error) {
-  <ion-alert header="error" [message]="error" isOpen="true" [buttons]="['Ok']"></ion-alert>
-  }
 
+  @defer (when !isLoading) {
   <ion-list>
     @for (item of movies; track item.id) {
     <ion-item button [routerLink]="['/details', item.id]">
@@ -45,4 +32,21 @@
   <ion-infinite-scroll (ionInfinite)="loadMore($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..." />
   </ion-infinite-scroll>
+  } @placeholder {
+  <ion-list class="ion-padding-top">
+    @for (i of dummyArray; track i) {
+    <ion-item lines="none" class="ion-padding-bottom">
+      <ion-avatar slot="start">
+        <ion-skeleton-text></ion-skeleton-text>
+      </ion-avatar>
+      <ion-skeleton-text animated style="height: 40px" />
+    </ion-item>
+    }
+  </ion-list>
+  } @error {
+  <ion-alert header="Error" [message]="error" isOpen="true" [buttons]="['Ok']" />
+  } @loading(minimum 2s) {
+    I AM TRANSITIONING
+  }
+
 </ion-content>

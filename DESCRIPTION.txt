@@ -6,7 +6,3 @@
 Реализация Skeleton-загрузки и обработки ошибок.
 Адаптивный и современный UI с использованием компонентов Ionic.
 Чистый и структурированный код, покрытый тестами.
-
-[screen](screenshots/Screenshot%200.png)
-[screen](screenshots/Screenshot%201.png)
-[screen](screenshots/Screenshot%202.png)
